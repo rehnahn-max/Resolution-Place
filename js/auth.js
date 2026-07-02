@@ -1,63 +1,69 @@
-/* =======================================================
-   Resolution Place
-   auth.js
-   Login e Cadastro (base local - futuro Firebase)
-======================================================= */
+import { auth } from "./firebase.js";
+
+import {
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 
 /* =========================
    LOGIN
 ========================= */
 
-const loginForm = document.getElementById("loginForm");
+window.login = async function () {
 
-if (loginForm) {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
-    loginForm.addEventListener("submit", (e) => {
+    try {
 
-        e.preventDefault();
+        await signInWithEmailAndPassword(auth, email, password);
 
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
-
-        if (!email || !password) return;
-
-        // FUTURO: Firebase Auth
-        console.log("Login:", email);
-
-        alert("Login realizado com sucesso (simulação)");
+        alert("Login realizado com sucesso!");
 
         window.location.href = "index.html";
 
-    });
+    } catch (error) {
 
-}
+        alert("Erro no login: " + error.message);
+
+    }
+};
 
 /* =========================
    CADASTRO
 ========================= */
 
-const registerForm = document.getElementById("registerForm");
+window.cadastrar = async function () {
 
-if (registerForm) {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
-    registerForm.addEventListener("submit", (e) => {
+    try {
 
-        e.preventDefault();
+        await createUserWithEmailAndPassword(auth, email, password);
 
-        const name = document.getElementById("name").value;
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
-        const city = document.getElementById("city").value;
+        alert("Conta criada com sucesso!");
 
-        if (!name || !email || !password || !city) return;
+        window.location.href = "index.html";
 
-        // FUTURO: Firebase Auth + Firestore
-        console.log("Cadastro:", { name, email, city });
+    } catch (error) {
 
-        alert("Conta criada com sucesso (simulação)");
+        alert("Erro no cadastro: " + error.message);
 
-        window.location.href = "login.html";
+    }
+};
 
-    });
+/* =========================
+   ESTADO DO USUÁRIO
+========================= */
 
-}
+onAuthStateChanged(auth, (user) => {
+
+    if (user) {
+        console.log("Usuário logado:", user.email);
+    } else {
+        console.log("Nenhum usuário logado");
+    }
+
+});
