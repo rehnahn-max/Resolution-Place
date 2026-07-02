@@ -66,3 +66,22 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+import { db } from "./firebase.js";
+import { auth } from "./firebase.js";
+
+await addDoc(collection(db, "anuncios"), {
+
+    titulo,
+    preco,
+    descricao,
+    categoria,
+    cidade,
+    estadoProduto,
+    imageURL,
+
+    userId: auth.currentUser ? auth.currentUser.uid : null,
+
+    score: Math.floor(Math.random() * 30) + 70,
+
+    createdAt: serverTimestamp()
+});

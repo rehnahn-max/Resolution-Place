@@ -92,10 +92,104 @@ import { db } from "./firebase.js";
 
 import {
     collection,
-    getDocs,
-    query,
-    orderBy
+    getDocs
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+const listaProdutos = document.getElementById("listaProdutos");
+
+let todosProdutos = [];
+
+/* =========================
+   CARREGAR PRODUTOS
+========================= */
+
+async function carregarProdutos() {
+
+    const snapshot = await getDocs(collection(db, "anuncios"));
+
+    todosProdutos = [];
+
+    snapshot.forEach((doc) => {
+
+        todosProdutos.push({
+            id: doc.id,
+            ...doc.data()
+        });
+
+    });
+
+    renderizarProdutos(todosProdutos);
+}
+
+/* =========================
+   RENDERIZAR
+========================= */
+
+function renderizarProdutos(lista) {
+
+    listaProdutos.innerHTML = "";
+
+    lista.forEach((data) => {
+
+        const card = document.createElement("div");
+
+        card.classList.add("produto-card");
+
+        card.innerHTML = `
+            
+            <img src="${data.imageURL}" />
+
+            <div class="produto-info">
+
+                <h3>${data.titulo}</h3>
+
+                <p class="preco">R$ ${data.preco}</p>
+
+                <p>${data.cidade}</p>
+
+                <a href="produto.html?id=${data.id}" class="btn-card">
+                    Ver produto
+                </a>
+
+            </div>
+
+        `;
+
+        listaProdutos.appendChild(card);
+
+    });
+
+}
+
+/* =========================
+   BUSCA
+========================= */
+
+const searchForm = document.getElementById("searchForm");
+
+searchForm.addEventListener("submit", (e) => {
+
+    e.preventDefault();
+
+    const termo = document.getElementById("searchInput").value.toLowerCase();
+
+    const filtrados = todosProdutos.filter((item) => {
+
+        return (
+            item.titulo.toLowerCase().includes(termo) ||
+            item.categoria.toLowerCase().includes(termo) ||
+            item.cidade.toLowerCase().includes(termo)
+        );
+
+    });
+
+    renderizarProdutos(filtrados);
+
+});
+
+/* INIT */
+
+carregarProdutos();
 
 /* =========================
    CARREGAR PRODUTOS
