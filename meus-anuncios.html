@@ -1,0 +1,74 @@
+import { db } from "./firebase.js";
+
+import {
+    doc,
+    getDoc
+} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+/* =========================
+   PEGAR ID DA URL
+========================= */
+
+const urlParams = new URLSearchParams(window.location.search);
+const id = urlParams.get("id");
+
+const container = document.getElementById("produtoContainer");
+
+async function carregarProduto() {
+
+    if (!id) {
+        container.innerHTML = "<p>Produto não encontrado</p>";
+        return;
+    }
+
+    try {
+
+        const docRef = doc(db, "anuncios", id);
+        const docSnap = await getDoc(docRef);
+
+        if (!docSnap.exists()) {
+            container.innerHTML = "<p>Produto não existe</p>";
+            return;
+        }
+
+        const data = docSnap.data();
+
+        container.innerHTML = `
+            
+            <div class="produto-detalhe-card">
+
+                <img src="${data.imageURL}" alt="Produto">
+
+                <div class="produto-info">
+
+                    <h1>${data.titulo}</h1>
+
+                    <h2 class="preco">R$ ${data.preco}</h2>
+
+                    <p><strong>Descrição:</strong> ${data.descricao}</p>
+
+                    <p>📍 ${data.cidade}</p>
+
+                    <p>🏷 ${data.categoria}</p>
+
+                    <p>📊 Score: ${data.score}%</p>
+
+                    <button class="btn-primary full">
+                        Falar com vendedor
+                    </button>
+
+                </div>
+
+            </div>
+
+        `;
+
+    } catch (error) {
+
+        console.error(error);
+        container.innerHTML = "<p>Erro ao carregar produto</p>";
+
+    }
+}
+
+carregarProduto();
