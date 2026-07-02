@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Anunciar Produto | Resolution Place</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+    <header class="header">
+
+        <div class="container">
+
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-store"></i>
+                Resolution Place
+            </a>
+
+        </div>
+
+    </header>
+
+    <section class="form-anuncio">
+
+        <div class="container">
+
+            <h1>Publicar anúncio</h1>
+
+            <p>Venda seu produto em poucos passos</p>
+
+            <form id="formAnuncio">
+
+                <input type="text" id="titulo" placeholder="Título do produto" required>
+
+                <input type="number" id="preco" placeholder="Preço (R$)" required>
+
+                <textarea id="descricao" placeholder="Descrição do produto" required></textarea>
+
+                <select id="categoria" required>
+
+                    <option value="">Categoria</option>
+                    <option>Eletrônicos</option>
+                    <option>Veículos</option>
+                    <option>Casa</option>
+                    <option>Moda</option>
+                    <option>Games</option>
+                    <option>Móveis</option>
+                    <option>Outros</option>
+
+                </select>
+
+                <input type="text" id="cidade" placeholder="Cidade" required>
+
+                <select id="estadoProduto">
+
+                    <option value="novo">Novo</option>
+                    <option value="usado">Usado</option>
+
+                </select>
+
+                <input type="file" id="imagem" accept="image/*" multiple>
+
+                <button type="submit" class="btn-primary full">
+
+                    Publicar anúncio
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+    <script type="module" src="js/anuncio.js"></script>
+
+</body>
+
+</html>

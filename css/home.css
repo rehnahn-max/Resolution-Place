@@ -1,0 +1,168 @@
+/* =======================================================
+   Resolution Place
+   home.css
+   Estilos da Página Inicial
+======================================================= */
+
+/* ========================= */
+/* BANNER PRINCIPAL */
+/* ========================= */
+
+.banner{
+    height: 70vh;
+    min-height: 450px;
+    background: url('../img/banners/banner.jpg') center/cover no-repeat;
+    position: relative;
+    display:flex;
+    align-items:center;
+    color:white;
+}
+
+.banner-overlay{
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.55);
+    display:flex;
+    align-items:center;
+}
+
+.banner-content{
+    width:90%;
+    max-width:1400px;
+    margin:auto;
+}
+
+.banner-content h1{
+    font-size:3rem;
+    max-width:700px;
+    line-height:1.2;
+}
+
+.banner-content p{
+    margin-top:15px;
+    font-size:1.2rem;
+    color:#e0e0e0;
+}
+
+.banner-buttons{
+    margin-top:30px;
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+/* ========================= */
+/* CATEGORIAS */
+/* ========================= */
+
+.categorias{
+    padding:70px 0;
+}
+
+.categorias-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+    gap:20px;
+}
+
+.categoria-card{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 6px 15px rgba(0,0,0,.06);
+    transition:.3s;
+}
+
+.categoria-card i{
+    font-size:1.8rem;
+    color:#1565C0;
+    margin-bottom:10px;
+}
+
+.categoria-card span{
+    font-weight:500;
+    display:block;
+}
+
+.categoria-card:hover{
+    transform:translateY(-5px);
+    background:#1565C0;
+    color:white;
+}
+
+.categoria-card:hover i{
+    color:white;
+}
+
+/* ========================= */
+/* SEÇÕES DE PRODUTOS */
+/* ========================= */
+
+.produtos{
+    padding:60px 0;
+}
+
+.produtos.recentes{
+    background:#f9fbfd;
+}
+
+/* ========================= */
+/* EFEITO DE CARDS MELHORADO */
+/* ========================= */
+
+.produto-card{
+    border:1px solid rgba(0,0,0,.05);
+}
+
+.produto-card:hover{
+    box-shadow:0 12px 25px rgba(0,0,0,.12);
+}
+
+/* ========================= */
+/* SCORE VISUAL */
+/* ========================= */
+
+.score{
+    font-size:.9rem;
+    color:#444;
+}
+
+.score strong{
+    color:#2E7D32;
+}
+
+/* ========================= */
+/* BOTÃO CARD MELHORADO */
+/* ========================= */
+
+.btn-card{
+    margin-top:10px;
+    font-weight:600;
+    letter-spacing:.5px;
+}
+
+/* ========================= */
+/* RESPONSIVO */
+/* ========================= */
+
+@media(max-width:768px){
+
+.banner-content h1{
+    font-size:2rem;
+}
+
+.banner{
+    height:auto;
+    padding:80px 0;
+}
+
+.banner-buttons{
+    flex-direction:column;
+}
+
+.categorias{
+    padding:40px 0;
+}
+
+}
