@@ -1,89 +1,107 @@
-/* =======================================================
-   Resolution Place
-   app.js
-   Base de funcionalidades do site
-======================================================= */
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-/* =========================
-   BOTÃO VOLTAR AO TOPO
-========================= */
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-const btnTopo = document.getElementById("btnTopo");
+    <title>Login | Resolution Place</title>
 
-window.addEventListener("scroll", () => {
+    <link rel="stylesheet" href="css/style.css">
 
-    if (window.scrollY > 300) {
-        btnTopo.style.display = "flex";
-    } else {
-        btnTopo.style.display = "none";
-    }
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
 
-});
+        .login-box {
+            width: 100%;
+            max-width: 400px;
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
 
-btnTopo.addEventListener("click", () => {
+        .login-box h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+        .login-box input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            outline: none;
+        }
 
-});
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: bold;
+        }
 
-/* =========================
-   BUSCA SIMPLES (FRONT)
-========================= */
+        .btn-login {
+            background: #000;
+            color: #fff;
+        }
 
-const searchForm = document.querySelector(".search-box");
+        .btn-register {
+            background: #eee;
+        }
 
-if (searchForm) {
+        .btn:hover {
+            opacity: 0.9;
+        }
 
-    searchForm.addEventListener("submit", (e) => {
+        .text {
+            text-align: center;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
 
-        e.preventDefault();
+<body>
 
-        const input = searchForm.querySelector("input");
+    <div class="login-box">
 
-        const query = input.value.trim();
+        <h2>Resolution Place</h2>
 
-        if (query === "") return;
+        <!-- EMAIL -->
+        <input type="email" id="email" placeholder="E-mail">
 
-        alert("Você pesquisou por: " + query);
+        <!-- SENHA -->
+        <input type="password" id="password" placeholder="Senha">
 
-        // Futuramente aqui entra a busca real no Firebase
-    });
+        <!-- LOGIN -->
+        <button class="btn btn-login" onclick="login()">
+            Entrar
+        </button>
 
-}
+        <!-- CADASTRO -->
+        <button class="btn btn-register" onclick="cadastrar()">
+            Criar conta
+        </button>
 
-/* =========================
-   EFEITO SIMPLES NO HEADER
-========================= */
+        <p class="text">Marketplace de usados e novos</p>
 
-const header = document.querySelector(".header");
+    </div>
 
-window.addEventListener("scroll", () => {
+    <!-- Firebase Auth JS -->
+    <script type="module" src="js/auth.js"></script>
 
-    if (window.scrollY > 50) {
-        header.style.boxShadow = "0 6px 20px rgba(0,0,0,.15)";
-    } else {
-        header.style.boxShadow = "0 8px 20px rgba(0,0,0,.08)";
-    }
+</body>
 
-});
-
-/* =========================
-   PREPARAÇÃO PARA PRODUTOS DINÂMICOS
-========================= */
-
-/*
-    Aqui no futuro vamos puxar produtos do Firebase:
-
-    - produtos em destaque
-    - produtos recentes
-    - produtos perto do usuário
-
-    Exemplo:
-
-    fetchProdutos()
-*/
-
-console.log("Resolution Place carregado com sucesso 🚀");
+</html>
