@@ -7,20 +7,15 @@ console.log("Resolution Place com sucesso 🚀");
 const btnTopo = document.getElementById("btnTopo");
 
 if (btnTopo) {
+
     window.addEventListener("scroll", () => {
-        if (window.scrollY > 300) {
-            btnTopo.style.display = "flex";
-        } else {
-            btnTopo.style.display = "none";
-        }
+        btnTopo.style.display = window.scrollY > 300 ? "flex" : "none";
     });
 
     btnTopo.addEventListener("click", () => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
+        window.scrollTo({ top: 0, behavior: "smooth" });
     });
+
 }
 
 /* =====================================================
@@ -51,15 +46,15 @@ if (searchForm) {
 const header = document.querySelector(".header");
 
 if (header) {
-    window.addEventListener("scroll", () => {
-        if (window.scrollY > 50) {
-            header.style.boxShadow = "0 6px 20px rgba(0,0,0,.15)";
-        } else {
-            header.style.boxShadow = "0 8px 20px rgba(0,0,0,.08)";
-        }
-    });
-}
 
+    window.addEventListener("scroll", () => {
+        header.style.boxShadow =
+            window.scrollY > 50
+                ? "0 6px 20px rgba(0,0,0,.15)"
+                : "0 8px 20px rgba(0,0,0,.08)";
+    });
+
+}
 /* =====================================================
    FUTURO: PRODUTOS DINÂMICOS FIREBASE
 ===================================================== */
